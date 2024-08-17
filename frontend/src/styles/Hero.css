@@ -1,0 +1,18 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  background-color: #000000; /* Change background color as needed */
+}
+
+.hero-header-bar {
+  font-weight: bold;
+  font-family: Ubuntu;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
