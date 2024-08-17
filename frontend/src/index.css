@@ -1,3 +1,29 @@
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bgThem: #ffffff; /* Default to light mode */
+  --txtThem: #000000;
+}
+
+.dark {
+  --bgThem: #000000;
+  --txtThem: #fde047;
+}
+
+.light {
+  --bgThem: #ffffff;
+  --txtThem: #000000;
+}
+
+/* Applying the variables to Tailwind classes */
+.bg-them {
+  background-color: var(--bgThem);
+}
+
+.text-them {
+  color: var(--txtThem);
+}
