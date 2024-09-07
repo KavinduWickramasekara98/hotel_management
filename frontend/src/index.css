@@ -4,19 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base{
 :root {
-  --bgThem: #ffffff; /* Default to light mode */
-  --txtThem: #000000;
+  --color-primary:#ffffff; /* Default to light mode */
+  --color-secondary:#000000;
+  --color-text-base:#000000;
+  --color-bg-primary:#FFEE58;
+}
+}
+.theme-black {
+  --color-primary:#000000; /* Default to light mode */
+  --color-secondary:#ffffff;
 }
 
-.dark {
-  --bgThem: #000000;
-  --txtThem: #fde047;
-}
-
-.light {
-  --bgThem: #ffffff;
-  --txtThem: #000000;
+.theme-orange {
+  --color-primary: #ff7700;
+  --color-secondary: #000000;
 }
 
 /* Applying the variables to Tailwind classes */

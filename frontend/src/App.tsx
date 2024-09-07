@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  
 
  } from 'react-router-dom'
 import '../src/styles/App.css'
@@ -13,9 +13,30 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout/>}/>
-        <Route path="/search" element={<>Search Page</>}/>
-        <Route path="*" element={<Navigate to="/"/>}/>
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <h1>Hello Root</h1>
+            </Layout>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <Layout>
+              <h1>Hello Search </h1>
+            </Layout>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <h1>Hello Any</h1>
+            </Layout>
+          }
+        />
       </Routes>
     </Router>
   );
