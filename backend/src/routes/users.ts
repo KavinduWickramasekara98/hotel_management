@@ -6,6 +6,8 @@ const router = express.Router();
 router.get('/', (req, res) => {
   res.send('Hello from users route');
 });
+
+//api/users/register
 router.post('/register',async (req: Request, res:Response) => {
   try {
     let user = await User.findOne({ email   : req.body.email, });
@@ -18,9 +20,14 @@ router.post('/register',async (req: Request, res:Response) => {
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET_KEY as string,{expiresIn:"1d",});
 
 //end protection secure:true for https
-    res.cookie('auth_token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+    res.cookie('auth_token', token, { 
+      httpOnly: true, secure: process.env.NODE_ENV === 'production',
+      maxAge: 24 * 60 * 60 * 1000, // 1 day 
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
+export default router;
