@@ -1,6 +1,8 @@
 import express, { Request, Response } from "express";
+import { check, validationResult } from "express-validator";
 import User from "../models/user";
-import bc
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 const router =express.Router();
 
 router.get('/', (req, res) => {
@@ -8,7 +10,7 @@ router.get('/', (req, res) => {
 });
 router.post("/login",[
     check("email","Please include a valid email").isEmail(),
-    check("password","Password with 6 letters required").isLnght({min:6})
+    check("password","Password with 6 letters required").isLength({min:6})
     ],async (req:Request,res:Response)=>{   
         const errors = validationResult(req);
         if(!errors.isEmpty()){
@@ -30,10 +32,11 @@ router.post("/login",[
                 secure:process.env.NODE_ENV === "production",
                 maxAge:24*60*60*1000
             });
-            res.json({message:"Login Success"});
+            res.status(200).json({message:"Login Success"});
         } catch (error) {
             console.log(error);
             res.status(500).json({message:"Server Error"});
         }
-    }    
+    } 
+);   
 export default router;
