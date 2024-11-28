@@ -30,7 +30,7 @@ const Register = () => {
           <input
             className="border rounded w-full py-1 px-2 font-normal"
             type="text"
-            {...register("firstName")}
+            {...register("firstName", { required: "First Name is required" })}
           />
         </label>
 
@@ -39,14 +39,37 @@ const Register = () => {
           <input
             className="border rounded w-full py-1 px-2 font-normal"
             type="text"
-            {...register("lastName")}
+            {...register("lastName", { required: "Last Name is required" })}
           />
         </label>
+
       </div>
-      <label>Email</label>
-      <input type="email" />
-      <label>Password</label>
-      <input type="password" />
+      <label className="text-gray-700 text-sm font-bold flex-1">
+          email
+          <input
+            className="border rounded w-full py-1 px-2 font-normal"
+            type="email"
+            {...register("email", { required: "email is required" })}
+          />
+        </label>
+      <label className="text-gray-700 text-sm font-bold">
+        Password
+        <input
+          className="border rounded w-full py-1 px-2 font-normal"
+          type="password"
+          {...register("password", { required: "Password is required" })}
+        />
+      </label>
+      <label className="text-gray-700 text-sm font-bold">
+        Confirm Password
+        <input
+          className="border rounded w-full py-1 px-2 font-normal"
+          type="password"
+          {...register("confirmPassword", {
+            required: "Confirm Password is required",
+          })}
+        />  
+      </label>
       <button type="submit">Register</button>
     </form>
   );

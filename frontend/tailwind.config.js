@@ -12,7 +12,9 @@ export default {
       },
     },
     container: {
-      padding: "10rem",
+      padding: {
+        md: "10rem",
+      },
     },
   },
   plugins: [],
