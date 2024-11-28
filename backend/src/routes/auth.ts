@@ -32,7 +32,7 @@ router.post("/login",[
                 secure:process.env.NODE_ENV === "production",
                 maxAge:24*60*60*1000
             });
-            res.status(200).json({message:"Login Success"});
+            res.status(200).json({userId:user._id});
         } catch (error) {
             console.log(error);
             res.status(500).json({message:"Server Error"});
