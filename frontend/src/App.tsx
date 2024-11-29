@@ -7,7 +7,7 @@ import {
  } from 'react-router-dom'
 import '../src/styles/App.css'
 import Layout from './layouts/Layout';
-import Register from './pages/register';
+import Register from './pages/Register';
 import Hero from './components/Hero';
 
 function App() {
