@@ -9,6 +9,7 @@ import '../src/styles/App.css'
 import Layout from './layouts/Layout';
 import Register from './pages/Register';
 import Hero from './components/Hero';
+import SignIn from './pages/SignIn';
 
 function App() {
 
@@ -32,10 +33,10 @@ function App() {
           }
         />
         <Route
-          path="/login"
+          path="/sign-in"
           element={
             <Layout>
-              <h1>Hello Login</h1>
+              <SignIn/>
             </Layout>
           }
         />
@@ -56,6 +57,7 @@ function App() {
             </Layout>
           }
         />
+
       </Routes>
     </Router>
   );
