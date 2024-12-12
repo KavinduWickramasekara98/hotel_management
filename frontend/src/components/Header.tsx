@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 import { useAppContext } from "../contexts/AppContexts";
+import SignOutButton from "./SignOutButton";
 //import { useState } from "react";
 //const themes = ["black","orange"]
 const Header = () => {
@@ -24,15 +25,7 @@ const Header = () => {
                   My Hotels
                 </span>
               </Link>
-                <button
-                  onClick={() => {
-                    localStorage.removeItem("auth_token");
-                    window.location.reload();
-                  }}
-                  className="flex items-center text-tBase px-3 font-bold bg-slate-300 bg-opacity-50 hover:bg-yellow-400 rounded-lg ubuntu-family"
-                >
-                  Sign Out
-                </button>
+              <SignOutButton/>
 
               </>
              : 

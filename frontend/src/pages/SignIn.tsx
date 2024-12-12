@@ -1,30 +1,34 @@
 
 import { useForm } from "react-hook-form";
+import { useMutation } from "react-query";
+import * as apiClient from "../api-client";
+import { useAppContext } from "../contexts/AppContexts";
+import { useNavigate } from "react-router-dom";
 export type SignInFormData = {
   email: string;
   password: string;
 };
-const SignIn: React.FC = () => {
-    const { register, formState: { errors } } = useForm<SignInFormData>();
+const SignIn= () => {
+    const { register, formState: { errors } ,handleSubmit} = useForm<SignInFormData>();
+    const {showToast} = useAppContext();
+    const navigate = useNavigate();
+    const mutation = useMutation(apiClient.signIn, {
+      onSuccess: () => {
+        showToast({ message: "Sign in Success", type: "SUCCESS" });
+        
+        navigate("/");
+      },
+      onError: (error:Error) => {
+        showToast({message:error.message,type:"ERROR"});
+      }
+    });
     
-    const handleSignIn = async () => {
-        try {
-            // const response = await fetch('/api/auth/login', {
-            //     method: 'POST',
-            //     headers: {
-            //         'Content-Type': 'application/json',
-            //     },
-            //     body: JSON.stringify({ email, password }),
-            // });
-           // const data = await response.json();
-        //localStorage.setItem('token', data.token);
-        } catch (error) {
-        console.error(error);
-        }
-    };
-    
+    const onSubmit = handleSubmit((data) => {  
+      mutation.mutate(data);
+    });
+
     return (
-      <form className="flex flex-col gap-5" onSubmit={handleSignIn}>
+      <form className="flex flex-col gap-5" onSubmit={onSubmit}>
         <h2 className="text-3xl font-bold">Sign In</h2>
         <label className="text-gray-700 text-sm font-bold flex-1">
           email
@@ -56,8 +60,12 @@ const SignIn: React.FC = () => {
             </span>
           )}
         </label>
-        <button className="bg-bgPrimary text-tBase p-2 font-bold hover:bg-yellow-200 text-xl" type="submit">
-          Sign In</button>
+        <button
+          className="bg-bgPrimary text-tBase p-2 font-bold hover:bg-yellow-200 text-xl"
+          type="submit"
+        >
+          Sign In
+        </button>
       </form>
     );
     };

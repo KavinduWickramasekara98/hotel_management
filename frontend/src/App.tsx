@@ -57,6 +57,12 @@ function App() {
             </Layout>
           }
         />
+        <Route path='/logout' 
+        element = {
+          <Layout>
+            <h1>Logout</h1>
+          </Layout>
+          }/>
 
       </Routes>
     </Router>
