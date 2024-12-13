@@ -16,6 +16,8 @@ const AppContexts=React.createContext<AppContext | undefined>(undefined);
 
 export const AppContextProvider = ({children}:{children:React.ReactNode}) => {
     const[toastMessage,setToastMessage]=React.useState<ToastMessage | undefined>(undefined);
+
+    //remove after logout invalidateQueries
     const { isError } = useQuery("validateToken", apiClient.validateToken, {
       retry: false,
     });

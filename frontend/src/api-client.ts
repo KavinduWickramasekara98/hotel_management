@@ -50,7 +50,9 @@ export const logout = async () => {
     method: "POST",
     credentials: "include",
   });
+  const responseBody = await response.json();
   if (!response.ok) {
     throw new Error("Logout failed");
   }
+return responseBody;
 }
