@@ -10,7 +10,7 @@ import path from 'path';
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 const app = express();
-app.use(express.static(path.join(__dirname, "../../frontend/dist")));
+
 
 app.use(cookieParser());
 app.use(express.json()); //enable api json request
@@ -21,6 +21,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.static(path.join(__dirname, "../../frontend/dist")));
 
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
