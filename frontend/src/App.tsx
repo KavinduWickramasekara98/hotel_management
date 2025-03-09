@@ -10,9 +10,11 @@ import Layout from './layouts/Layout';
 import Register from './pages/Register';
 import Hero from './components/Hero';
 import SignIn from './pages/SignIn';
+import AddHotel from './pages/AddHotels';
+import { useAppContext } from './contexts/AppContexts';
 
 function App() {
-
+  const {isLoggedIn} = useAppContext();
   return (
     <Router>
       <Routes>
@@ -63,6 +65,17 @@ function App() {
             <h1>Logout</h1>
           </Layout>
           }/>
+
+          {
+            isLoggedIn && <>
+              <Route path='/add-hotel' 
+              element = {
+                <Layout>
+                  <AddHotel/>
+                </Layout>
+              }/>
+            </>
+          }
 
       </Routes>
     </Router>

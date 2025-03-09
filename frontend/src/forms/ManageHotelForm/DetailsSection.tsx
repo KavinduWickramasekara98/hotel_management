@@ -1,0 +1,179 @@
+import { useFormContext } from "react-hook-form";
+import { HotelFormData } from "./ManageHotelForm";
+
+const DetailsSection = () => {
+    const {register,
+        formState:{errors}} = useFormContext<HotelFormData>();
+
+    return (
+      <div className="flex flex-col gap-4">
+        <h1 className="text-3xl font-bold mb-3">Add Hotel</h1>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+          Name
+          <input
+            className="border rounded w-full py-1 px-2 font-normal"
+            type="text"
+            {...register("name", { required: "name is required" })}
+          />
+          {errors.name && (
+            <span className="text-red-500 text-sm">{errors.name.message}</span>
+          )}
+        </label>
+        <div className="flex gap-4">
+          <label className="text-gray-700 text-sm font-bold flex-1">
+            City
+            <input
+              className="border rounded w-full py-1 px-2 font-normal"
+              type="text"
+              {...register("city", { required: "city is required" })}
+            />
+            {errors.city && (
+              <span className="text-red-500 text-sm">
+                {errors.city.message}
+              </span>
+            )}
+          </label>
+          <label className="text-gray-700 text-sm font-bold flex-1">
+            Country
+            <input
+              className="border rounded w-full py-1 px-2 font-normal"
+              type="text"
+              {...register("country", { required: "email is required" })}
+            />
+            {errors.country && (
+              <span className="text-red-500 text-sm">
+                {errors.country.message}
+              </span>
+            )}
+          </label>
+        </div>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+          Description
+          <textarea
+            rows={10}
+            className="border rounded w-full py-1 px-2 font-normal"
+            {...register("description", {
+              required: "description is required",
+            })}
+          />
+          {errors.description && (
+            <span className="text-red-500 text-sm">
+              {errors.description.message}
+            </span>
+          )}
+        </label>
+        <label className="text-gray-700 text-sm font-bold max-w-[50%]">
+          Price Per Night
+            <input
+                className="border rounded w-full py-1 px-2 font-normal"
+                type="number"
+                min={1}
+                {...register("pricePerNight", {
+                required: "price per night is required",
+                })}
+            />
+            {errors.pricePerNight && (
+                <span className="text-red-500 text-sm">
+                {errors.pricePerNight.message}
+                </span>
+            )}
+        </label>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+          Star Rating
+            <select {...register("starRating", { required: "star rating is required" })} className="border rounded w-full py-1 px-2 font-normal">
+                <option value="1" className="text-sm font-bold">
+                    Select as Rating
+                </option>
+               {[1, 2, 3, 4, 5].map((rating) => (
+                    <option key={rating} value={rating} className="text-sm font-bold">
+                        {rating}
+                    </option>
+                ))}
+
+            </select>
+            {errors.starRating && (
+                <span className="text-red-500 text-sm">
+                {errors.starRating.message}
+                </span>
+            )}
+        </label>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+            Type
+                <input
+                    className="border rounded w-full py-1 px-2 font-normal"
+                    type="text"
+                    {...register("type", {
+                    required: "type is required",
+                    })}
+                />
+                {errors.type && (
+                    <span className="text-red-500 text-sm">
+                    {errors.type.message}
+                    </span>
+                )}
+        </label>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+            Facilities
+                <input
+                    className="border rounded w-full py-1 px-2 font-normal"
+                    type="text"
+                    {...register("facilities", {
+                    required: "facilities is required",
+                    })}
+                />
+                {errors.facilities && (
+                    <span className="text-red-500 text-sm">
+                    {errors.facilities.message}
+                    </span>
+                )}
+
+        </label>
+        <label className="text-gray-700 text-sm font-bold flex-1">
+            Image Files
+                <input
+                    className="border rounded w-full py-1 px-2 font-normal"
+                    type="file"
+                    {...register("imageFiles", {
+                    required: "image files is required",
+                    })}
+                />
+                {errors.imageFiles && (
+                    <span className="text-red-500 text-sm">
+                    {errors.imageFiles.message}
+                    </span>
+                )}
+        </label>
+        <div className="flex gap-4">
+            <label className="text-gray-700 text-sm font-bold flex-1">
+                Adult Count
+                <input
+                className="border rounded w-full py-1 px-2 font-normal"
+                type="number"
+                {...register("adultCount", { required: "adult count is required" })}
+                />
+                {errors.adultCount && (
+                <span className="text-red-500 text-sm">
+                    {errors.adultCount.message}
+                </span>
+                )}
+            </label>
+            <label className="text-gray-700 text-sm font-bold flex-1">
+                Child Count
+                <input
+                className="border rounded w-full py-1 px-2 font-normal"
+                type="number"
+                {...register("childCount", { required: "child count is required" })}
+                />
+                {errors.childCount && (
+                <span className="text-red-500 text-sm">
+                    {errors.childCount.message}
+                </span>
+                )}
+            </label>
+        </div>
+
+    
+      </div>
+    );
+};
+export default DetailsSection;
