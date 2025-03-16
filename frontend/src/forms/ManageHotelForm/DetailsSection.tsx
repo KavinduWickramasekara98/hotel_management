@@ -27,11 +27,11 @@ const DetailsSection = () => {
               type="text"
               {...register("city", { required: "city is required" })}
             />
-            {errors.city && (
+            {errors.city && 
               <span className="text-red-500 text-sm">
                 {errors.city.message}
               </span>
-            )}
+            }
           </label>
           <label className="text-gray-700 text-sm font-bold flex-1">
             Country

@@ -16,7 +16,7 @@ const ImageSection=()=>{
             validate:(imageFiles)=>{
                 const imageLength=imageFiles.length;
                 if(imageLength===0){
-                    "Please upload at least one image";
+                    return "Please upload at least one image";
                 }else if(imageLength>6){
                     return "Maximum 6 images are allowed";
                     
@@ -27,7 +27,7 @@ const ImageSection=()=>{
           })} />
         </div>
         {errors.imageFiles&&(
-            <span className="text-red-500 text-sm">{errors.imageFiles.message}</span>
+            <span className="text-red-500 text-sm font-bold">{errors.imageFiles.message}</span>
         )}
       </div>
     );
