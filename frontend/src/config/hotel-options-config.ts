@@ -28,8 +28,6 @@ export const hotelFacilities=[
     "Breakfast",
     "Spa",
     "Swimming Pool",
-    "Pet Friendly",
-    "Family Rooms",
     "Disabled Guests",
     "Air Conditioning",
     "Private Beach",

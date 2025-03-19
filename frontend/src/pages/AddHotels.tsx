@@ -8,10 +8,10 @@ const AddHotel = () => {
     const {mutate, isLoading} =useMutation(
         apiClient.addMyHotel,{
             onSuccess:()=>{
-                showToast({message:"Hotel added successfully",type:"success"});
+                showToast({message:"Hotel added successfully",type:"SUCCESS"});
             },
-            onError:(error)=>{
-                showToast({message:error.message,type:"error"});
+            onError:()=>{
+                showToast({message:"Faild to add hotel",type:"ERROR"});
             }
         }
     );   

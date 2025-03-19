@@ -6,6 +6,12 @@ import verifyToken from '../middleware/auth';
 import { body } from 'express-validator';
 const router = express.Router();
 const storage= multer.memoryStorage();
+require('dotenv').config();
+cloudinary.v2.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 const upload = multer({
     storage:storage,
     limits:{
@@ -36,9 +42,12 @@ router.post('/',verifyToken,[
         
         const uploadPromises = imageFiles.map(async(image)=>{
             const b64 =Buffer.from(image.buffer).toString("base64");
-            let dataURI="data:"+image.mimetype+",base64,"+b64;
+            let dataURI="data:"+image.mimetype+";base64,"+b64;
             const res = await cloudinary.v2.uploader.upload(dataURI);
             return res.url;
+            // const dataURI = `data:${image.mimetype};base64,${b64}`;
+            // const uploadResult = await cloudinary.v2.uploader.upload(dataURI);
+            // return uploadResult.secure_url;
         });
         const imageURLs = await Promise.all(uploadPromises);
         newHotel.imageUrls = imageURLs;
