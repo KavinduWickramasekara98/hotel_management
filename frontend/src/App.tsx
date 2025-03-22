@@ -12,6 +12,7 @@ import Hero from './components/Hero';
 import SignIn from './pages/SignIn';
 import AddHotel from './pages/AddHotels';
 import { useAppContext } from './contexts/AppContexts';
+import MyHotels from './pages/MyHotels';
 
 function App() {
   const {isLoggedIn} = useAppContext();
@@ -76,7 +77,12 @@ function App() {
               }/>
             </>
           }
-
+        <Route path='/my-hotels'
+        element = {
+          <Layout>
+            <MyHotels/>
+          </Layout>
+        }/>
       </Routes>
     </Router>
   );

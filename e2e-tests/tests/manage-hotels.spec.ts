@@ -47,3 +47,25 @@ test("users add hotels successfully", async ({ page }) => {
       timeout: 10000,
     });
 });
+
+test("display my hotels", async ({ page }) => {
+  await page.goto(`${UI_URL}my-hotels`);
+  await page.waitForSelector("text=Niyagama House", { timeout: 10000 });
+  await expect(
+    page.getByRole("heading", { name: "Niyagama House" })
+  ).toBeVisible();
+  await expect(
+    page.getByText("Niyagama House is a serene boutique hotel")
+  ).toBeVisible();
+   await expect(
+     page.locator("div").getByText("Galle, Sri Lanka").first()
+   ).toBeVisible();
+  
+  await expect(page.getByText("All Inclusive")).toBeVisible();
+  await expect(page.getByText("$20 per night")).toBeVisible();
+  await expect(page.getByText("2 adults, 2 children")).toBeVisible();
+  await expect(page.getByText("3 stars")).toBeVisible();
+  await expect(page.getByRole("link",{name:"View"})).toBeVisible();
+  await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
+   await expect(page.getByRole("link", { name: "Delete" })).toBeVisible();
+});
