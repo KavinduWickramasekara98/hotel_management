@@ -13,6 +13,7 @@ import SignIn from './pages/SignIn';
 import AddHotel from './pages/AddHotels';
 import { useAppContext } from './contexts/AppContexts';
 import MyHotels from './pages/MyHotels';
+import EditHotel from './pages/EditHotel';
 
 function App() {
   const {isLoggedIn} = useAppContext();
@@ -39,7 +40,7 @@ function App() {
           path="/sign-in"
           element={
             <Layout>
-              <SignIn/>
+              <SignIn />
             </Layout>
           }
         />
@@ -60,29 +61,45 @@ function App() {
             </Layout>
           }
         />
-        <Route path='/logout' 
-        element = {
-          <Layout>
-            <h1>Logout</h1>
-          </Layout>
-          }/>
-
-          {
-            isLoggedIn && <>
-              <Route path='/add-hotel' 
-              element = {
-                <Layout>
-                  <AddHotel/>
-                </Layout>
-              }/>
-            </>
+        <Route
+          path="/logout"
+          element={
+            <Layout>
+              <h1>Logout</h1>
+            </Layout>
           }
-        <Route path='/my-hotels'
-        element = {
-          <Layout>
-            <MyHotels/>
-          </Layout>
-        }/>
+        />
+
+        {isLoggedIn && (
+          <>
+            <Route
+              path="/add-hotel"
+              element={
+                <Layout>
+                  <AddHotel />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel/>
+                </Layout>
+              }
+            />
+
+            <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotels />
+                </Layout>
+              }
+            />
+
+          </>
+        )}
       </Routes>
     </Router>
   );

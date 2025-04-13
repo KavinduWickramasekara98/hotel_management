@@ -69,3 +69,23 @@ test("display my hotels", async ({ page }) => {
   await expect(page.getByRole("link", { name: "Add Hotel" })).toBeVisible();
    await expect(page.getByRole("link", { name: "Delete" })).toBeVisible();
 });
+test("Able to edit hotel", async ({ page }) => {
+  await page.goto(`${UI_URL}my-hotels`);
+  await page.getByRole("link", { name: "View" }).click();
+  await page.waitForSelector('[name="name"]',{state:"attached"});
+  await expect(page.locator('[name="name"]')).toHaveValue(
+    "Niyagama House"
+  );
+  await page.locator('[name="name"]').fill("Niyagama House Updated");
+
+  await page.getByRole("button", { name: "Submit" }).click();
+  await expect(page.getByText("Hotel Updated !")).toBeVisible({
+    timeout: 10000,
+  });
+  await page.reload();
+   await expect(page.locator('[name="name"]')).toHaveValue(
+     "Niyagama House Updated"
+   );
+  await page.locator('[name="name"]').fill("Niyagama House");
+  await page.getByRole("button", { name: "Submit" }).click();
+});
