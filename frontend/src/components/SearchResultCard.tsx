@@ -128,7 +128,7 @@ const SearchResultCard = ({ hotel }: Props) => {
               )}
             </div>
             <Link
-              to={`/hotels/${hotel.userId}`}
+              to={`/detail/${hotel._id}`}
               className="rounded-lg p-2 bg-yellow-200 text-black hover:text-yellow-900  font-medium text-sm sm:text-base transition-colors duration-200"
             >
               View More

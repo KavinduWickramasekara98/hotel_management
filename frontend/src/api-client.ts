@@ -51,12 +51,23 @@ export const logout = async () => {
     method: "POST",
     credentials: "include",
   });
-  const responseBody = await response.json();
+
+  // Check if response has content before parsing
   if (!response.ok) {
-    throw new Error("Logout failed");
+    const text = await response.text();
+    throw new Error(text || "Logout failed");
   }
-return responseBody;
-}
+
+  // Handle empty response (e.g., 204 No Content or 200 with no body)
+  const contentType = response.headers.get("content-type");
+  if (contentType && contentType.includes("application/json")) {
+    const responseBody = await response.json();
+    return responseBody;
+  }
+
+  // Return empty object for non-JSON responses
+  return {};
+};
 
 export const addMyHotel = async (hotelFormData: FormData) => {
 
@@ -159,4 +170,13 @@ export const searchHotels = async (
   }
 
   return await response.json();
+};
+
+export const fetchHotelById = async (hotelId: string): Promise<HotelType> => {
+  const response = await fetch(`${API_BASE_URL}/api/hotels/${hotelId}`);
+  const responseBody = await response.json();
+  if (!response.ok) {
+    throw new Error(responseBody.message);
+  }
+  return responseBody;
 };
