@@ -26,6 +26,7 @@
   },
   "include": [
     "src/**/*",
-    "../backend/src/shared/types.ts" 
+    "../backend/src/shared/types.ts",
+    "src/types/**/*"
   ]
 }

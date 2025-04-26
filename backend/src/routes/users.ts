@@ -1,12 +1,27 @@
 import express,{Request,Response} from 'express';
 import User from '../models/user';
 import jwt from 'jsonwebtoken';
+import verifyToken from '../middleware/auth';
 const router = express.Router();
 
 router.get('/', (req, res) => {
   res.send('Hello from users route');
 });
 
+
+router.get('/me',verifyToken, async (req: Request, res: Response) => {
+  const userId = req.userId;
+  try {
+    const user = await User.findById(userId).select('-password');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: 'Something went wrong' });
+  }
+});
 //api/users/register
 router.post('/register',async (req: Request, res:Response) => {
   try {
