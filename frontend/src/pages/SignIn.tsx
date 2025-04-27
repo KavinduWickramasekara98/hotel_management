@@ -28,6 +28,7 @@ const SignIn = () => {
         queryClient.invalidateQueries("validateToken"),
         queryClient.invalidateQueries("fetchUser"), // Trigger refetch of user data
       ]);
+
       navigate(location.state?.from?.pathname || "/");
     },
     onError: (error: Error) => {

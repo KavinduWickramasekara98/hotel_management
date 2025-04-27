@@ -23,16 +23,16 @@ export const fetchMyBookings = async () =>{
 }
 
 export const fetchUser = async (): Promise<UserType | null> => {
-  const response = await fetch(
-    `${import.meta.env.VITE_API_BASE_URL}/api/users/me`,
+  const response = await fetch(`${API_BASE_URL}/api/users/me`,
     {
       credentials: "include",
     }
   );
+  const responseBody = await response.json();
   if (!response.ok) {
     throw new Error("Failed to fetch user");
   }
-  return response.json();
+  return responseBody;
 };
 export const fetchCurrentUser = async (): Promise<UserType> => {
   const response = await fetch(`${API_BASE_URL}/api/users/me`, {
