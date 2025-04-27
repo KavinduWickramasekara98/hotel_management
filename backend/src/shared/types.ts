@@ -1,4 +1,4 @@
-import { Types } from "mongoose";
+
 
 export type HotelSearchResponse = {
   data: HotelType[];
@@ -19,7 +19,7 @@ export type UserType = {
 
 export interface BookingType {
   _id?: string;
-  hotelId: Types.ObjectId | string;
+  hotelId:string;
   userId: string;
   checkIn: string;
   checkOut: string;
@@ -48,7 +48,7 @@ export interface HotelType {
   starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
-  bookings: (Types.ObjectId | string)[];
+  bookings: string[];
 }
 
 export type PaymentIntentType = {

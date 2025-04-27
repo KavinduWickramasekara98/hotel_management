@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { BookingType } from "../shared/types";
 
 const bookingSchema = new mongoose.Schema<BookingType>({
   hotelId: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: String,
     ref: "Hotel",
     required: true,
   },
@@ -20,8 +20,13 @@ const bookingSchema = new mongoose.Schema<BookingType>({
   createdAt: { type: String, default: () => new Date().toISOString() },
 });
 
-export const BookingModel = mongoose.model<BookingType>(
-  "Booking",
-  bookingSchema
-);
+// Transform ObjectId to string in JSON output
+bookingSchema.set("toJSON", {
+  transform: (doc, ret) => {
+    ret.hotelId = ret.hotelId.toString(); // Convert ObjectId to string
+    return ret;
+  },
+});
+
+export const BookingModel = mongoose.model<BookingType>("Booking", bookingSchema);
 export default BookingModel;
