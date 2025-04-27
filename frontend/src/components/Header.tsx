@@ -15,6 +15,7 @@ const Header = () => {
           <span className="flex space-x-2">
             {isLoggedIn ? (
               <>
+                {<div>${isLoggedIn}</div>}
                 <Link to="/my-bookings">
                   <span className="flex items-center justify-center text-tBase px-3 py-2 w-32 font-bold bg-slate-300 bg-opacity-50 hover:bg-yellow-400 rounded-lg ubuntu-family">
                     My Bookings
@@ -31,6 +32,7 @@ const Header = () => {
               </>
             ) : (
               <>
+                {<div>${isLoggedIn}</div>}
                 <Link
                   to="/sign-in"
                   className="flex items-center justify-center text-tBase px-3 py-2 w-32 font-bold bg-slate-300 bg-opacity-50 hover:bg-yellow-400 rounded-lg ubuntu-family"
